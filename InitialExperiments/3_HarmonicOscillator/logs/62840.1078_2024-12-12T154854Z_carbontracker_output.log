@@ -1,0 +1,10 @@
+2024-12-12 15:48:54 - CarbonTracker: The following components were found: GPU with device(s) GPU, ANE. CPU with device(s) CPU.
+2024-12-12 15:49:08 - CarbonTracker: Average carbon intensity during training was 151.65 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2024-12-12 15:49:08 - CarbonTracker: 
+Actual consumption:
+	Time:	0:00:14
+	Energy:	0.000103897892 kWh
+	CO2eq:	0.015756146560 g
+	This is equivalent to:
+	0.000146568805 km travelled by car
+2024-12-12 15:49:08 - CarbonTracker: Finished monitoring.

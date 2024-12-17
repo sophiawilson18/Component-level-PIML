@@ -9,7 +9,7 @@ import tqdm
 import sys
 
 # Append custom module path
-sys.path.append("..//Experiment1")
+sys.path.append("..//1_Interpolation")
 import E1_Functions as func
 
 # Helper Function

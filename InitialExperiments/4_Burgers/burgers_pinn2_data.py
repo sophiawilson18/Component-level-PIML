@@ -22,11 +22,11 @@ cmap2 = plt.get_cmap('seismic')
 # ADJUSTABLE PARAMETERS
 layers = [2] + [50] * 4 + [1]  # Depth and width of the neural network
 lr = 0.001  # Learning rate
-N_f = 2000  # Number of collocation points
-N_d = 2000  # Number of data points
+N_f = 1  # Number of collocation points
+N_d = 7544  # Number of data points
 nu = 0.025  # PDE parameter (viscosity)
-adam_epochs = 4000
-lbfgs_epochs = 5000
+adam_epochs = 15000
+lbfgs_epochs = 15000
 
 def main():
     # Define the domain

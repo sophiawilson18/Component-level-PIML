@@ -24,10 +24,10 @@ cmap2 = plt.get_cmap('seismic')
 # ADJUSTABLE PARAMETERS
 layers = [2] + [50] * 4 + [1]  # Depth and width of the neural network
 lr = 0.001  # Learning rate
-N_f = 2000  # Number of collocation points
+N_f = 4000  + 456 # Number of collocation points
 nu = 0.025  # PDE parameter (viscosity)
-adam_epochs = 1000
-lbfgs_epochs = 3000
+adam_epochs = 4000
+lbfgs_epochs = 5000
 
 def main():
     # Define the domain
@@ -46,9 +46,9 @@ def main():
     u_init = -np.sin(np.pi * X_init[:, 0:1]).squeeze()
 
     # Boundary conditions (BC)
-    idx_bc = np.where((X_star[:, 0] == 1.0) | (X_star[:, 0] == -1.0))[0]
-    X_bc = X_star[idx_bc]
-    u_bc = np.zeros((X_bc.shape[0], 1)).squeeze()
+    #idx_bc = np.where((X_star[:, 0] == 1.0) | (X_star[:, 0] == -1.0))[0]
+    #X_bc = X_star[idx_bc]
+    #u_bc = np.zeros((X_bc.shape[0], 1)).squeeze()
 
     # Collocation points
     idx_Xf = np.random.choice(X_star.shape[0], N_f, replace=False)
@@ -56,8 +56,8 @@ def main():
 
     # Convert data to PyTorch tensors
     X_colloc_train_tensor = torch.tensor(X_colloc, dtype=torch.float64)
-    X_bc_tensor = torch.tensor(X_bc, dtype=torch.float64)
-    u_bc_tensor = torch.tensor(u_bc, dtype=torch.float64).view(-1, 1)
+    #X_bc_tensor = torch.tensor(X_bc, dtype=torch.float64)
+    #u_bc_tensor = torch.tensor(u_bc, dtype=torch.float64).view(-1, 1)
     X_init_tensor = torch.tensor(X_init, dtype=torch.float64)
     u_init_tensor = torch.tensor(u_init, dtype=torch.float64).view(-1, 1)
 
@@ -104,8 +104,8 @@ def main():
         layers,
         lr,
         type_problem='forward',
-        X_bc=X_bc_tensor,
-        u_bc=u_bc_tensor,
+        #X_bc=X_bc_tensor,
+        #u_bc=u_bc_tensor,
         X_init=X_init_tensor,
         u_init=u_init_tensor,
     )
