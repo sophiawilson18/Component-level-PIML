@@ -285,7 +285,7 @@ class PINNs:
                 loss_f += self.loss_f(f_i)
 
         # Total loss
-        loss = loss_obs + loss_f * pde_weights
+        loss = loss_obs + loss_f * pde_weights 
 
         return loss, loss_bc, loss_init, loss_data, loss_other, loss_f
 
@@ -359,6 +359,14 @@ class PINNs:
         # Compute gradients with respect to the trainable parameters
         loss_value.backward()  # Compute gradients
         grads = [param.grad.clone() if param.grad is not None else torch.zeros_like(param) for param in self.pinns_training_variables()]
+
+        # Scale the gradients of the PDE parameters
+        #grads = []
+        #for param in self.pinns_training_variables():
+        #    if param is self.param_pde:
+        #        if param.grad is not None:
+        #            param.grad *= 1e6  # Scale the gradient by a factor (adjust as needed)
+        #    grads.append(param.grad.clone() if param.grad is not None else torch.zeros_like(param))
 
         return loss_value, loss_bc, loss_init, loss_data, loss_other, loss_f, grads
 
